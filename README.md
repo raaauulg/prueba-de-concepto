@@ -6,7 +6,7 @@ Esto es una prueba de concepto para explicar de forma visual cómo funciona **Ma
 
 La idea la saqué de [request-journey](https://arnaucanet.github.io/request-journey/), que enseña el camino de una petición web paso a paso. Yo he hecho lo mismo pero con una orden de compra de BTC: sigues una orden desde que un agente decide comprar hasta que se casa en el libro y el resto de agentes reaccionan. Al final del recorrido se ve que el precio no lo pone nadie, sale solo de cómo interactúan los agentes.
 
-![Portada](portada.png)
+![Portada](img/portada.png)
 
 ## Qué hay dentro
 
@@ -27,27 +27,27 @@ Una compra de 0,002 BTC pasa por todo el simulador:
 
 Además hay tres escenarios para ver qué pasa cuando algo sale mal: la orden casa en parte, se rechaza por falta de saldo o pierde la carrera contra un agente más rápido.
 
-![Estación del motor de casación](recorrido-motor.png)
+![Estación del motor de casación](img/recorrido-motor.png)
 
 En el escenario «pierde la carrera» un noise trader con menos latencia llega 1,3 ms antes y se lleva la liquidez. Con la misma decisión, ser más lento te deja con una orden pasiva en vez de ejecutada:
 
-![Escenario pierde la carrera](recorrido-carrera.png)
+![Escenario pierde la carrera](img/recorrido-carrera.png)
 
 ### 2. Laboratorio del libro de órdenes
 
 Un motor de casación pequeño donde puedes meter tus propias órdenes (LIMIT, MARKET, GTC/IOC/FOK, post-only) y ver cómo se van comiendo la cola de cada nivel. También salen los rechazos típicos: precio fuera de tick, nocional mínimo, post-only que cruzaría, FOK que no se puede llenar...
 
-![Laboratorio del libro de órdenes](libro-de-ordenes.png)
+![Laboratorio del libro de órdenes](img/libro-de-ordenes.png)
 
 ### 3. Mercado en miniatura
 
 Una versión de juguete del simulador hecha en JavaScript, con cinco tipos de agente (market makers, zero intelligence, noise traders, fundamentalistas y chartistas) y 10 minutos de mercado simulado. Le pasas una semilla y se calcula todo en tu navegador en menos de un segundo. También pasa un health check con los mismos umbrales que uso en el simulador real.
 
-![Mercado con semilla 42](mercado-semilla42.png)
+![Mercado con semilla 42](img/mercado-semilla42.png)
 
 Lo más interesante es ir quitando tipos de agente. Por ejemplo, sin market makers el spread se dispara (de ~1 pb a decenas de pb) y el libro se queda bastante vacío:
 
-![Mercado sin market makers](mercado-sin-market-makers.png)
+![Mercado sin market makers](img/mercado-sin-market-makers.png)
 
 Y si repites con la misma semilla te sale la misma huella. Eso es justo lo que pido al simulador de verdad.
 
